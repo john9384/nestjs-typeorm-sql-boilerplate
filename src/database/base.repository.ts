@@ -8,9 +8,9 @@ import {
 import { IRepository } from './interfaces/repository.interface';
 
 @Injectable()
-export abstract class BaseRepository<T extends ObjectLiteral>
-  implements IRepository<T>
-{
+export abstract class BaseRepository<
+  T extends ObjectLiteral,
+> implements IRepository<T> {
   constructor(protected readonly repository: Repository<T>) {}
 
   async create(data: DeepPartial<T>): Promise<T> {

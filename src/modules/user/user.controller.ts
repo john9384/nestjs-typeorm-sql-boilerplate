@@ -43,9 +43,7 @@ export class UserController {
     status: 401,
     description: 'Unauthorized',
   })
-  async create(
-    @Body() createUserDto: CreateUserDto,
-  ): Promise<UserResponseDto> {
+  async create(@Body() createUserDto: CreateUserDto): Promise<UserResponseDto> {
     return await this.userService.create(createUserDto);
   }
 

@@ -81,7 +81,7 @@ export class AuthService {
     };
   }
 
-  async getCurrentUser(user: UserEntity): Promise<UserDataDto> {
+  getCurrentUser(user: UserEntity): UserDataDto {
     return {
       id: user.id,
       email: user.email,

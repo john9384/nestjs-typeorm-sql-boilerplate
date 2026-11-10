@@ -14,4 +14,3 @@ export abstract class BaseEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 }
-

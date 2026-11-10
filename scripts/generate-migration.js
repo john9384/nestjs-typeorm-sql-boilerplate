@@ -6,7 +6,7 @@
  * or
  *   npm run migration:generate:name -- -n CreateUserTable
  *
- * It will generate file under: src/infrastructure/database/migrations/
+ * It will generate file under: src/database/migrations/
  */
 const { spawnSync } = require('node:child_process');
 const path = require('node:path');
@@ -32,14 +32,13 @@ function parseArgs(argv) {
   const { name } = parseArgs(process.argv);
   if (!name) {
     console.error('Missing migration name. Example:');
-    console.error('  npm run migration:generate -- src/infrastructure/database/migrations/UpdateDb');
+    console.error('  npm run migration:generate -- src/database/migrations/UpdateDb');
     console.error('  npm run migration:generate:name -- --name UpdateDb');
     process.exit(1);
   }
 
   const migrationPath = path.posix.join(
     'src',
-    'infrastructure',
     'database',
     'migrations',
     name

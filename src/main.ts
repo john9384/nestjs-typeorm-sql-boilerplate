@@ -1,24 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import { AppModule } from '@/app.module';
-import { HttpExceptionFilter } from '@/common/filters/http-exception.filter';
-import { AllExceptionsFilter } from '@/common/filters/all-exceptions.filter';
-import { TransformResponseInterceptor } from '@/common/interceptors/transform-response.interceptor';
-import { Reflector } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
+import { TransformResponseInterceptor } from './common/interceptors/transform-response.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const reflector = app.get(Reflector);
+  const app = await NestFactory.create(AppModule, { rawBody: true });
+  app.enableShutdownHooks();
 
   // Enable CORS
   app.enableCors();
 
   // Global exception filters (order matters - more specific first)
-  app.useGlobalFilters(
-    new AllExceptionsFilter(),
-    new HttpExceptionFilter(),
-  );
+  app.useGlobalFilters(new AllExceptionsFilter(), new HttpExceptionFilter());
 
   // Global response interceptor
   app.useGlobalInterceptors(new TransformResponseInterceptor());

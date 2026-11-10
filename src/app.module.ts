@@ -11,6 +11,8 @@ import { GuardsModule } from './common/guards/guards.module';
 import { validationSchema } from './config/validation.schema';
 import appConfig from './config/app.config';
 import databaseConfig from './config/orm.config';
+import { NotificationsModule } from './modules/notifications/notifications.module';
+import { PaymentsModule } from './modules/payments/payments.module';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import databaseConfig from './config/orm.config';
     GuardsModule, // Then import GuardsModule to provide JwtAuthGuard
     UserModule,
     EventsModule,
+    NotificationsModule,
+    PaymentsModule,
     JobsModule,
   ],
   controllers: [AppController],

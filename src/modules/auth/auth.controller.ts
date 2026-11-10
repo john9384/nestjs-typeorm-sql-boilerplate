@@ -88,7 +88,7 @@ export class AuthController {
     status: 401,
     description: 'Unauthorized',
   })
-  async getCurrentUser(@CurrentUser() user: UserEntity): Promise<UserDataDto> {
-    return await this.authService.getCurrentUser(user);
+  getCurrentUser(@CurrentUser() user: UserEntity): UserDataDto {
+    return this.authService.getCurrentUser(user);
   }
 }

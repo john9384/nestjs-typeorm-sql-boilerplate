@@ -6,7 +6,7 @@
  * or
  *   npm run migration:create:name -- -n InitSchema
  *
- * It will create the file under: src/infrastructure/database/migrations/
+ * It will create the file under: src/database/migrations/
  */
 const { spawnSync } = require('node:child_process');
 const path = require('node:path');
@@ -32,14 +32,13 @@ function parseArgs(argv) {
   const { name } = parseArgs(process.argv);
   if (!name) {
     console.error('Missing migration name. Example:');
-    console.error('  npm run migration:create -- src/infrastructure/database/migrations/InitSchema');
+    console.error('  npm run migration:create -- src/database/migrations/InitSchema');
     console.error('  npm run migration:create:name -- --name InitSchema');
     process.exit(1);
   }
 
   const migrationPath = path.posix.join(
     'src',
-    'infrastructure',
     'database',
     'migrations',
     name
